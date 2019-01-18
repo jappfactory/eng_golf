@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.widget.ImageView;
 import android.widget.TextView;

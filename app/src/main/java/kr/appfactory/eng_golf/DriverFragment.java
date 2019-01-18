@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class IronFragment extends Fragment implements AbsListView.OnScrollListener {
+public class DriverFragment extends Fragment implements AbsListView.OnScrollListener {
 
     private boolean lastItemVisibleFlag = false;    // 리스트 스크롤이 마지막 셀(맨 바닥)로 이동했는지 체크할 변수
     public  ListView driverMovieListView;
@@ -39,16 +39,16 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
     private  ProgressBar progressBar;                // 데이터 로딩중을 표시할 프로그레스바
     private boolean mLockListView = false;          // 데이터 불러올때 중복안되게 하기위한 변수
     public int loading = 0;
-    public int loadingresult = 0;
     public int viewcnt = 0;
+    public int loadingresult = 0;
+
     private static  int networkYn = 0;
     Toolbar myToolbar;
 
-
     Activity activity;
-
-    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+아이언+레슨");
+    String Keyword = ((MainActivity)getActivity()).getURLEncode("eng_golf+driver+lesson");
     String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,10 +59,10 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
 
         activity = (Activity) getActivity();
     }
-    public IronFragment() {}
+    public DriverFragment() {}
 
-    public static IronFragment newInstance() {
-        IronFragment fragment = new IronFragment();
+    public static DriverFragment newInstance() {
+        DriverFragment fragment = new DriverFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -71,11 +71,8 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
-        }
-
-
+        //progressBar.setVisibility(View.GONE);
     }
 
 
@@ -85,36 +82,41 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
 
         SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
 
-        driverMovieListView  = (ListView) getView().findViewById(R.id.subIronListView);
+
+        driverMovieListView  = (ListView) getView().findViewById(R.id.subDriverListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
         driverMovieListView.setAdapter(driveradapter);
-
 
         driverMovieListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(view.getContext(), MoviePlayActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("videoId", ""+  driverMovieList.get(position).getMovie_videoId());
-                intent.putExtra("title",""+ driverMovieList.get(position).getMovie_title());
-                intent.putExtra("videodesc", ""+  driverMovieList.get(position).getMovie_desc());
-                intent.putExtra("publishedAt",""+ driverMovieList.get(position).getMovie_date());
-                intent.putExtra("thum_pic",""+ driverMovieList.get(position).getThum_img());
 
-                view.getContext().startActivity(intent);
+
+                    Intent intent = new Intent(view.getContext(), MoviePlayActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("videoId", ""+  driverMovieList.get(position).getMovie_videoId());
+                    intent.putExtra("title",""+ driverMovieList.get(position).getMovie_title());
+                    intent.putExtra("videodesc", ""+  driverMovieList.get(position).getMovie_desc());
+                    intent.putExtra("publishedAt",""+ driverMovieList.get(position).getMovie_date());
+                    intent.putExtra("thum_pic",""+ driverMovieList.get(position).getThum_img());
+
+
+                    view.getContext().startActivity(intent);
+
+
 
             }
         });
 
-
         driverMovieListView.setOnScrollListener(this);
+
+        //Toast.makeText (activity, "" + target , Toast.LENGTH_LONG).show();
 
         // 다음 데이터를 불러온다.
         getItem(target);
     }
-
     public void progressBarShow(){
 
         driverMovieListView.setOnTouchListener(new View.OnTouchListener() {
@@ -142,6 +144,7 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
 
     }
 
+
     @Override
     public void onScrollStateChanged(AbsListView absListView, int scrollState) {
 
@@ -155,10 +158,21 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
             // 로딩중을 알리는 프로그레스바를 보인다.
             progressBarShow();
 
+/*
+
+            date – 리소스를 만든 날짜를 기준으로 최근 항목부터 시간 순서대로 리소스를 정렬합니다.
+            rating – 높은 평가부터 낮은 평가순으로 리소스를 정렬합니다.
+            relevance – 검색 쿼리에 대한 관련성을 기준으로 리소스를 정렬합니다. 이 매개변수의 기본값입니다.
+            title – 제목에 따라 문자순으로 리소스를 정렬합니다.
+            videoCount – 업로드한 동영상 수에 따라 채널을 내림차순으로 정렬합니다.
+            viewCount – 리소스를 조회수가 높은 항목부터 정렬합니다.
+*/
             String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
             target = target + aa;
+           // Log.e("target", ""+target);
 
+            //Toast.makeText (getActivity(), "" + target , Toast.LENGTH_LONG).show();
             // 다음 데이터를 불러온다.
             getItem(target);
         }
@@ -171,13 +185,17 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
         // totalItemCount : 리스트 전체의 총 갯수
         // 리스트의 갯수가 0개 이상이고, 화면에 보이는 맨 하단까지의 아이템 갯수가 총 갯수보다 크거나 같을때.. 즉 리스트의 끝일때. true
         lastItemVisibleFlag = true;
+       // Toast.makeText (getActivity(), "위로" , Toast.LENGTH_LONG).show();
     }
 
     public void getItem(String target){
 
-       // loading ++ ;
-      //  loadingresult = loading % 10;
-      //  if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+        Log.e("target", ""+target);
+      //  loading ++ ;
+       // loadingresult = loading % 10;
+       // if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+        //AdsFull.getInstance(getActivity()).setAdsFull();
+        //Toast.makeText (getActivity(), "로딩 카운트 : " + loadingresult , Toast.LENGTH_SHORT).show();
 
         // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
         mLockListView = true;
@@ -185,50 +203,53 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
         new LoadMovieTask(getActivity(), driverMovieList, driverMovieListView, driveradapter, target,"sub").execute();
 
 
+
+       // driverMovieListView.setAdapter(driveradapter);
+        //Log.d("driverMovieList6", ""+driverMovieList);
+
         // 1초 뒤 프로그레스바를 감추고 데이터를 갱신하고, 중복 로딩 체크하는 Lock을 했던 mLockListView변수를 풀어준다.
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
 
                 try {
-                    driveradapter.notifyDataSetChanged();
 
+                    driveradapter.notifyDataSetChanged();
+                   // driveradapter.refreshAdapter(driverMovieList);
                     String totalResults= SharedPreference.getSharedPreference(getActivity(), "totalResults");
                     DecimalFormat decimalFormat = new DecimalFormat("#,###");
                     totalResults = decimalFormat.format(Double.parseDouble(totalResults.toString().replaceAll(",","")));
-                    TextView searchcnt = (TextView) getView().findViewById(R.id.searchcnt);
+                    TextView searchcnt =  getView().findViewById(R.id.searchcnt);
                     searchcnt.setText(totalResults);
 
-                    progressBarHidden();
+                    // driveradapter.setNotifyOnChange(false);
                     mLockListView = false;
+                    progressBarHidden();
+
+
                 }catch  (Exception e) {
                     e.printStackTrace();
                 }
-
-
 
             }
         },1000);
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
+        //new LoadMovieTask(getContext(), driverMovieList).execute();
 
-        networkYn = ((MainActivity)getActivity()).Online();
-        if(networkYn==2) ((MainActivity)getActivity()).NotOnline();
-        View view=inflater.inflate(R.layout.fragment_iron, container, false);
+        View view=inflater.inflate(R.layout.fragment_driver, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         myToolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle("클럽별 레슨 영상 - 아이언");
-
+        actionBar.setTitle("클럽별 레슨 영상 - 드라이버");
 
 
         final Button driverButton = (Button) view.findViewById(R.id.driverButton);
@@ -238,7 +259,11 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
         final Button putterButton = (Button) view.findViewById(R.id.putterButton);
 
 
-        ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
+        driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
+
+        networkYn = ((MainActivity)getActivity()).Online();
+        if(networkYn==2) ((MainActivity)getActivity()).NotOnline();
+
 
         driverButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -331,7 +356,6 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
             }
         });
 
-
         return view;
     }
 
@@ -348,7 +372,6 @@ public class IronFragment extends Fragment implements AbsListView.OnScrollListen
     public void onDetach() {
         super.onDetach();
         mListener = null;
-
 
     }
 

@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WedgeFragment extends Fragment implements AbsListView.OnScrollListener {
+public class IronFragment extends Fragment implements AbsListView.OnScrollListener {
 
     private boolean lastItemVisibleFlag = false;    // 리스트 스크롤이 마지막 셀(맨 바닥)로 이동했는지 체크할 변수
     public  ListView driverMovieListView;
@@ -46,7 +45,8 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
 
 
     Activity activity;
-    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+웨지+레슨");
+
+    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+아이언+레슨");
     String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
 
     private OnFragmentInteractionListener mListener;
@@ -58,10 +58,10 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
 
         activity = (Activity) getActivity();
     }
-    public WedgeFragment() {}
+    public IronFragment() {}
 
-    public static WedgeFragment newInstance() {
-        WedgeFragment fragment = new WedgeFragment();
+    public static IronFragment newInstance() {
+        IronFragment fragment = new IronFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -74,6 +74,7 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
 
         }
 
+
     }
 
 
@@ -82,7 +83,8 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
         super.onActivityCreated(b);
 
         SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
-        driverMovieListView  = (ListView) getView().findViewById(R.id.subWedgeListView);
+
+        driverMovieListView  = (ListView) getView().findViewById(R.id.subIronListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
         driverMovieListView.setAdapter(driveradapter);
@@ -150,12 +152,12 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
         if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastItemVisibleFlag && mLockListView == false) {
             // 화면이 바닦에 닿을때 처리
             // 로딩중을 알리는 프로그레스바를 보인다.
-            //progressBar.setVisibility(View.VISIBLE);
             progressBarShow();
 
-            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=5&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
+            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
             target = target + aa;
+
             // 다음 데이터를 불러온다.
             getItem(target);
         }
@@ -173,36 +175,43 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
     public void getItem(String target){
 
        // loading ++ ;
-       // loadingresult = loading % 10;
-       // if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+      //  loadingresult = loading % 10;
+      //  if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
 
         // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
         mLockListView = true;
 
         new LoadMovieTask(getActivity(), driverMovieList, driverMovieListView, driveradapter, target,"sub").execute();
 
+
         // 1초 뒤 프로그레스바를 감추고 데이터를 갱신하고, 중복 로딩 체크하는 Lock을 했던 mLockListView변수를 풀어준다.
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
+
                 try {
                     driveradapter.notifyDataSetChanged();
+
                     String totalResults= SharedPreference.getSharedPreference(getActivity(), "totalResults");
                     DecimalFormat decimalFormat = new DecimalFormat("#,###");
                     totalResults = decimalFormat.format(Double.parseDouble(totalResults.toString().replaceAll(",","")));
                     TextView searchcnt = (TextView) getView().findViewById(R.id.searchcnt);
                     searchcnt.setText(totalResults);
+
                     progressBarHidden();
                     mLockListView = false;
                 }catch  (Exception e) {
                     e.printStackTrace();
                 }
 
+
+
             }
         },1000);
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -210,14 +219,15 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
 
         networkYn = ((MainActivity)getActivity()).Online();
         if(networkYn==2) ((MainActivity)getActivity()).NotOnline();
-        View view=inflater.inflate(R.layout.fragment_wedge, container, false);
+        View view=inflater.inflate(R.layout.fragment_iron, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         myToolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle("클럽별 레슨 영상 - 웨지");
+        actionBar.setTitle("클럽별 레슨 영상 - 아이언");
+
 
 
         final Button driverButton = (Button) view.findViewById(R.id.driverButton);
@@ -227,18 +237,19 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
         final Button putterButton = (Button) view.findViewById(R.id.putterButton);
 
 
-        wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
-
+        ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
 
         driverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 putterButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+
 
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -319,6 +330,7 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
             }
         });
 
+
         return view;
     }
 
@@ -335,6 +347,7 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
     public void onDetach() {
         super.onDetach();
         mListener = null;
+
 
     }
 

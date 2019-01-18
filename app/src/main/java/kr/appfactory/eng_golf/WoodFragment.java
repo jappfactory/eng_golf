@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,15 +8,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ChannelFragment extends Fragment implements AbsListView.OnScrollListener {
+public class WoodFragment extends Fragment implements AbsListView.OnScrollListener {
 
     private boolean lastItemVisibleFlag = false;    // 리스트 스크롤이 마지막 셀(맨 바닥)로 이동했는지 체크할 변수
     public  ListView driverMovieListView;
@@ -37,19 +41,16 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
     public int loading = 0;
     public int loadingresult = 0;
     public int viewcnt = 0;
-    Toolbar myToolbar;
     private static  int networkYn = 0;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Toolbar myToolbar;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     Activity activity;
 
+    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+우드+레슨");
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
 
-    String target ;
+
     private OnFragmentInteractionListener mListener;
 
 
@@ -59,13 +60,11 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
 
         activity = (Activity) getActivity();
     }
-    public ChannelFragment() {}
+    public WoodFragment() {}
 
-    public static ChannelFragment newInstance(String param1, String param2  ) {
-        ChannelFragment fragment = new ChannelFragment();
+    public static WoodFragment newInstance() {
+        WoodFragment fragment = new WoodFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,21 +73,15 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
-
     }
 
 
     @Override
     public void onActivityCreated(@Nullable Bundle b) {
         super.onActivityCreated(b);
-         //target = mParam1;
-        SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
 
-        driverMovieListView  = (ListView) getView().findViewById(R.id.subChannelListView);
+        driverMovieListView  = (ListView) getView().findViewById(R.id.subWoodListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
         driverMovieListView.setAdapter(driveradapter);
@@ -111,10 +104,13 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
             }
         });
 
+
         driverMovieListView.setOnScrollListener(this);
+
         // 다음 데이터를 불러온다.
-        getItem(mParam1);
+        getItem(target);
     }
+
 
     public void progressBarShow(){
 
@@ -155,8 +151,10 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
             // 화면이 바닦에 닿을때 처리
             // 로딩중을 알리는 프로그레스바를 보인다.
             progressBarShow();
-      String nextPageToken= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
-            target = mParam1 + nextPageToken;
+
+            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
+            String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
+            target = target + aa;
 
             // 다음 데이터를 불러온다.
             getItem(target);
@@ -169,22 +167,19 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
         // visibleItemCount : 화면에 보이는 리스트 아이템의 갯수
         // totalItemCount : 리스트 전체의 총 갯수
         // 리스트의 갯수가 0개 이상이고, 화면에 보이는 맨 하단까지의 아이템 갯수가 총 갯수보다 크거나 같을때.. 즉 리스트의 끝일때. true
-
-        String nextPageToken= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
-        if(nextPageToken.isEmpty()) lastItemVisibleFlag = false;
-        else  lastItemVisibleFlag = true;
+        lastItemVisibleFlag = true;
     }
 
     public void getItem(String target){
-       // loading ++ ;
-       // loadingresult = loading % 10;
-        //if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
 
-        // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
+        loading ++ ;
+        loadingresult = loading % 10;
+        if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
         mLockListView = true;
 
         new LoadMovieTask(getActivity(), driverMovieList, driverMovieListView, driveradapter, target,"sub").execute();
 
+        Log.d("driverMovieList6", ""+driverMovieList);
 
         // 1초 뒤 프로그레스바를 감추고 데이터를 갱신하고, 중복 로딩 체크하는 Lock을 했던 mLockListView변수를 풀어준다.
         new Handler().postDelayed(new Runnable() {
@@ -193,13 +188,13 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
 
                 try {
                     driveradapter.notifyDataSetChanged();
-
                     String totalResults= SharedPreference.getSharedPreference(getActivity(), "totalResults");
                     DecimalFormat decimalFormat = new DecimalFormat("#,###");
                     totalResults = decimalFormat.format(Double.parseDouble(totalResults.toString().replaceAll(",","")));
-                    TextView searchcnt =  getView().findViewById(R.id.searchcnt);
+                    TextView searchcnt = (TextView) getView().findViewById(R.id.searchcnt);
                     searchcnt.setText(totalResults);
 
+                   // progressBar.setVisibility(View.GONE);
                     progressBarHidden();
                     mLockListView = false;
                 }catch  (Exception e) {
@@ -210,7 +205,6 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
 
             }
         },1000);
-
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -219,16 +213,111 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
 
         networkYn = ((MainActivity)getActivity()).Online();
         if(networkYn==2) ((MainActivity)getActivity()).NotOnline();
-
-        View view=inflater.inflate(R.layout.fragment_channel, container, false);
+        View view=inflater.inflate(R.layout.fragment_wood, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+
 
         myToolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle(mParam2);
+        actionBar.setTitle("클럽별 레슨 영상 - 우드");
 
+        final Button driverButton = (Button) view.findViewById(R.id.driverButton);
+        final Button woodButton = (Button) view.findViewById(R.id.woodButton);
+        final Button ironButton = (Button) view.findViewById(R.id.ironButton);
+        final Button wedgeButton = (Button) view.findViewById(R.id.wedgeButton);
+        final Button putterButton = (Button) view.findViewById(R.id.putterButton);
+
+
+        woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
+
+        driverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                putterButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+
+
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, new DriverFragment());
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        woodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                putterButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, new WoodFragment());
+                fragmentTransaction.commit();
+            }
+        });
+
+
+
+        ironButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                putterButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, new IronFragment());
+                fragmentTransaction.commit();
+            }
+        });
+
+
+        wedgeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                putterButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, new WedgeFragment());
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        putterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                putterButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, new PutterFragment());
+                fragmentTransaction.commit();
+            }
+        });
 
         return view;
     }
@@ -246,7 +335,6 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
     public void onDetach() {
         super.onDetach();
         mListener = null;
-
 
     }
 

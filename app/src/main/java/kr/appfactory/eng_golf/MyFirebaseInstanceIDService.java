@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.content.Context;
 import android.util.Log;
@@ -43,7 +43,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         Log.d(TAG, "gsm/reg = " + token);
         //request
         Request request = new Request.Builder()
-                .url("http://golf.pointn.co.kr/index.php/gms/reg/"+token)
+                .url("http://eng_golf.pointn.co.kr/index.php/gms/reg/"+token)
                 .post(body)
                 .build();
 

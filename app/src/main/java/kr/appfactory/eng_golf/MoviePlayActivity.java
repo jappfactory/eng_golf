@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -140,7 +140,7 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
                 String EXTRA_TEXT ="https://www.youtube.com/watch?v="+videoId;
                  EXTRA_TEXT +="\n\n" +
                          "언제나 즐거운 골프레슨영상 설치\n" +
-                         "https://play.google.com/store/apps/details?id=kr.appfactory.golf";
+                         "https://play.google.com/store/apps/details?id=kr.appfactory.eng_golf";
 
                 //Toast.makeText(getApplicationContext(), "Go Back", Toast.LENGTH_LONG).show();
                 Intent msg = new Intent (Intent.ACTION_SEND);

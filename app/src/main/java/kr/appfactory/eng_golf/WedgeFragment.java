@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WoodFragment extends Fragment implements AbsListView.OnScrollListener {
+public class WedgeFragment extends Fragment implements AbsListView.OnScrollListener {
 
     private boolean lastItemVisibleFlag = false;    // 리스트 스크롤이 마지막 셀(맨 바닥)로 이동했는지 체크할 변수
     public  ListView driverMovieListView;
@@ -46,10 +45,8 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
 
 
     Activity activity;
-
-    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+우드+레슨");
+    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+웨지+레슨");
     String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
-
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,10 +57,10 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
 
         activity = (Activity) getActivity();
     }
-    public WoodFragment() {}
+    public WedgeFragment() {}
 
-    public static WoodFragment newInstance() {
-        WoodFragment fragment = new WoodFragment();
+    public static WedgeFragment newInstance() {
+        WedgeFragment fragment = new WedgeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -73,7 +70,9 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+
         }
+
     }
 
 
@@ -81,7 +80,8 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
     public void onActivityCreated(@Nullable Bundle b) {
         super.onActivityCreated(b);
 
-        driverMovieListView  = (ListView) getView().findViewById(R.id.subWoodListView);
+        SharedPreference.putSharedPreference(getActivity(), "viewcnt", 0);
+        driverMovieListView  = (ListView) getView().findViewById(R.id.subWedgeListView);
         driverMovieList = new ArrayList<DriverMovie>();
         driveradapter = new DriverMovieListAdapter(activity, driverMovieList, this);
         driverMovieListView.setAdapter(driveradapter);
@@ -110,7 +110,6 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
         // 다음 데이터를 불러온다.
         getItem(target);
     }
-
 
     public void progressBarShow(){
 
@@ -150,12 +149,12 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
         if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastItemVisibleFlag && mLockListView == false) {
             // 화면이 바닦에 닿을때 처리
             // 로딩중을 알리는 프로그레스바를 보인다.
+            //progressBar.setVisibility(View.VISIBLE);
             progressBarShow();
 
-            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
+            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=5&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
             target = target + aa;
-
             // 다음 데이터를 불러온다.
             getItem(target);
         }
@@ -172,14 +171,14 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
 
     public void getItem(String target){
 
-        loading ++ ;
-        loadingresult = loading % 10;
-        if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+       // loading ++ ;
+       // loadingresult = loading % 10;
+       // if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
+
+        // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
         mLockListView = true;
 
         new LoadMovieTask(getActivity(), driverMovieList, driverMovieListView, driveradapter, target,"sub").execute();
-
-        Log.d("driverMovieList6", ""+driverMovieList);
 
         // 1초 뒤 프로그레스바를 감추고 데이터를 갱신하고, 중복 로딩 체크하는 Lock을 했던 mLockListView변수를 풀어준다.
         new Handler().postDelayed(new Runnable() {
@@ -193,18 +192,15 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
                     totalResults = decimalFormat.format(Double.parseDouble(totalResults.toString().replaceAll(",","")));
                     TextView searchcnt = (TextView) getView().findViewById(R.id.searchcnt);
                     searchcnt.setText(totalResults);
-
-                   // progressBar.setVisibility(View.GONE);
                     progressBarHidden();
                     mLockListView = false;
                 }catch  (Exception e) {
                     e.printStackTrace();
                 }
 
-
-
             }
         },1000);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -213,15 +209,15 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
 
         networkYn = ((MainActivity)getActivity()).Online();
         if(networkYn==2) ((MainActivity)getActivity()).NotOnline();
-        View view=inflater.inflate(R.layout.fragment_wood, container, false);
+        View view=inflater.inflate(R.layout.fragment_wedge, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
-
 
         myToolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle("클럽별 레슨 영상 - 우드");
+        actionBar.setTitle("클럽별 레슨 영상 - 웨지");
+
 
         final Button driverButton = (Button) view.findViewById(R.id.driverButton);
         final Button woodButton = (Button) view.findViewById(R.id.woodButton);
@@ -230,17 +226,18 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
         final Button putterButton = (Button) view.findViewById(R.id.putterButton);
 
 
-        woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
+        wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlueDark));
+
 
         driverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 driverButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 woodButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 ironButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 wedgeButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 putterButton.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-
 
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -264,6 +261,7 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment, new WoodFragment());
                 fragmentTransaction.commit();
+
             }
         });
 
@@ -282,6 +280,7 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment, new IronFragment());
                 fragmentTransaction.commit();
+
             }
         });
 

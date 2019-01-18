@@ -1,4 +1,4 @@
-package kr.appfactory.golf;
+package kr.appfactory.eng_golf;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
