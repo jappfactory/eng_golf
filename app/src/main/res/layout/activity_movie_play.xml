@@ -92,7 +92,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
                 android:background="@color/colorBlue"
-                android:text="친구에게공유"
+                android:text="Share with friends"
                 android:textColor="#ffffff"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -126,7 +126,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
                 android:background="@color/colorBlue"
-                android:text="즐겨찾기저장"
+                android:text="Save Favorites"
                 android:textColor="#ffffff"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -139,7 +139,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
                 android:background="@color/DarkNavy"
-                android:text="즐겨찾기삭제"
+                android:text="Delete Favorites"
                 android:textColor="#ffffff"
                 android:textSize="14dp"
                 android:textStyle="bold" />

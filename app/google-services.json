@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "287201327941",
-    "firebase_url": "https://appfacory-golf.firebaseio.com",
-    "project_id": "appfacory-golf",
-    "storage_bucket": "appfacory-golf.appspot.com"
+    "project_number": "833825507921",
+    "firebase_url": "https://appfacory-eng-golf.firebaseio.com",
+    "project_id": "appfacory-eng-golf",
+    "storage_bucket": "appfacory-eng-golf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:287201327941:android:4e1a7cd0480a32d3",
+        "mobilesdk_app_id": "1:833825507921:android:d6c161830df1524b",
         "android_client_info": {
-          "package_name": "kr.appfactory.golf"
+          "package_name": "kr.appfactory.eng_golf"
         }
       },
       "oauth_client": [
         {
-          "client_id": "287201327941-fl4p1h0jl8dlj08vbrd6ck5pii35jgar.apps.googleusercontent.com",
+          "client_id": "833825507921-982tbs8gou13p94543hbhe367uvbjvqg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDl20ujAbi5OWfE6JRiteHD_L8Dj3Vyk50"
+          "current_key": "AIzaSyD4afBcxB6YTFzdVHkluLptWLat5R3mIQY"
         }
       ],
       "services": {

@@ -47,7 +47,7 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
 
     Activity activity;
 
-    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+우드+레슨");
+    String Keyword = ((MainActivity)getActivity()).getURLEncode("golf+woods+lesson");
     String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
 
 
@@ -221,7 +221,7 @@ public class WoodFragment extends Fragment implements AbsListView.OnScrollListen
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle("클럽별 레슨 영상 - 우드");
+        actionBar.setTitle("Club lesson video - Woods ");
 
         final Button driverButton = (Button) view.findViewById(R.id.driverButton);
         final Button woodButton = (Button) view.findViewById(R.id.woodButton);

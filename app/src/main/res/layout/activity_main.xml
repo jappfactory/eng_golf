@@ -41,7 +41,7 @@
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="검색어를 입력하세요"
+            android:hint="Please enter a search term"
 
             />
         </FrameLayout>
@@ -133,7 +133,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginTop="0dp"
                     android:layout_marginLeft="4dp"
-                    android:text="클럽별 레슨 영상"
+                    android:text="Club lesson video"
                     android:textColor="#FFFFFF"
 
                     android:background="@color/colorBlueDark"
@@ -158,7 +158,7 @@
                     android:layout_marginTop="4dp"
                     android:gravity="center_vertical"
                     android:layout_marginLeft="4dp"
-                    android:text="채널별 레슨 영상"
+                    android:text="Lessons per Channel"
                     android:textColor="#FFFFFF"
                     android:background="@color/colorBlueDark"
                     android:textSize="20dp"
@@ -187,7 +187,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_weight="1"
                     android:background="@color/colorGreenLight"
-                    android:text="My 즐겨찾기    >> "
+                    android:text="My Favorites    >> "
                     android:textColor="#ffffff"
                     android:layout_alignBottom="@id/scrollview"
                     android:textSize="16dp"

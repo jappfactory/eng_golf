@@ -45,7 +45,7 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
 
 
     Activity activity;
-    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+웨지+레슨");
+    String Keyword = ((MainActivity)getActivity()).getURLEncode("golf+wedge+lesson");
     String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
 
     private OnFragmentInteractionListener mListener;
@@ -216,7 +216,7 @@ public class WedgeFragment extends Fragment implements AbsListView.OnScrollListe
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle("클럽별 레슨 영상 - 웨지");
+        actionBar.setTitle("Club lesson video - Wedge ");
 
 
         final Button driverButton = (Button) view.findViewById(R.id.driverButton);

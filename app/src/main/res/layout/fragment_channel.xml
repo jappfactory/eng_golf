@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:layout_marginLeft="4dp"
-                android:text="총 "
+                android:text="You can watch "
                 android:textColor="#2e2e2e"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -49,7 +49,7 @@
                 android:id="@+id/searchtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
-                android:text=" 개의 레슨 영상을 보실수 있습니다."
+                android:text="  lesson videos."
                 android:textColor="#2e2e2e"
                 android:textSize="14sp"
                 android:textStyle="bold" />

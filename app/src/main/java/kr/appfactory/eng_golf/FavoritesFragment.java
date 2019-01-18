@@ -182,7 +182,7 @@ public class FavoritesFragment extends Fragment {
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle("My 즐겨찾기");
+        actionBar.setTitle("My Favorites");
 
 
 

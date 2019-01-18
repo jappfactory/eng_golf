@@ -6,8 +6,8 @@ android {
         applicationId "kr.appfactory.eng_golf"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 4
-        versionName "1.0.3"
+        versionCode 1
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,7 +17,7 @@ android {
 
             applicationVariants.all { variant ->
                 variant.outputs.all {
-                    def appName = "golf_"
+                    def appName = "eng_golf_"
                     def buildType = variant.variantData.variantConfiguration.buildType.name
                     def newName
                     if (buildType == 'debug') {

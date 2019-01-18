@@ -33,7 +33,7 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:background="@color/colorBlue"
-            android:text="드라이버"
+            android:text="driver"
             android:textColor="#ffffff"
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -46,7 +46,7 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:background="@color/colorBlue"
-            android:text="우드"
+            android:text="woods"
             android:textColor="#ffffff"
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -59,7 +59,7 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:background="@color/colorBlue"
-            android:text="아이언"
+            android:text="iron"
             android:textColor="#ffffff"
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -72,7 +72,7 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:background="@color/colorBlue"
-            android:text="웨지"
+            android:text="wedge"
             android:textColor="#ffffff"
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -85,7 +85,7 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:background="@color/colorBlue"
-            android:text="퍼터"
+            android:text="putter"
             android:textColor="#ffffff"
             android:textSize="14dp"
             android:textStyle="bold" />

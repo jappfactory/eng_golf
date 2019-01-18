@@ -117,7 +117,7 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
                 Button favoritesdelButton = (Button) findViewById(R.id.favoritesdelButton);
                 favoritesButton.setVisibility(View.INVISIBLE);
                 favoritesdelButton.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(), "즐겨찾기에 저장되었습니다~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Saved in favourites~", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -130,7 +130,7 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
                 favoritesButton.setVisibility(View.VISIBLE);
                 favoritesdelButton.setVisibility(View.INVISIBLE);
 
-                Toast.makeText(getApplicationContext(), "즐겨찾기에서 삭제되었습니다~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Deleted from favourites~", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -139,7 +139,7 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
             public void onClick(View v) {
                 String EXTRA_TEXT ="https://www.youtube.com/watch?v="+videoId;
                  EXTRA_TEXT +="\n\n" +
-                         "언제나 즐거운 골프레슨영상 설치\n" +
+                         "Always Install Golfreson Video\n" +
                          "https://play.google.com/store/apps/details?id=kr.appfactory.eng_golf";
 
                 //Toast.makeText(getApplicationContext(), "Go Back", Toast.LENGTH_LONG).show();
@@ -149,7 +149,7 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
                 msg.setType("text/plain");
 
                 msg.putExtra(Intent.EXTRA_TEXT,EXTRA_TEXT);
-                startActivity(Intent.createChooser(msg, "공유하기"));
+                startActivity(Intent.createChooser(msg, "Sharing"));
 
             }
         });

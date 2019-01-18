@@ -46,7 +46,7 @@ public class PutterFragment extends Fragment implements AbsListView.OnScrollList
 
     Activity activity;
 
-    String Keyword = ((MainActivity)getActivity()).getURLEncode("골프+퍼터+레슨");
+    String Keyword = ((MainActivity)getActivity()).getURLEncode("golf+putting+lesson");
     String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
 
     private OnFragmentInteractionListener mListener;
@@ -222,7 +222,7 @@ public class PutterFragment extends Fragment implements AbsListView.OnScrollList
         ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         TextView title = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        actionBar.setTitle("클럽별 레슨 영상 - 퍼터");
+        actionBar.setTitle("Club lesson video - Putter ");
 
 
         final Button driverButton = (Button) view.findViewById(R.id.driverButton);
