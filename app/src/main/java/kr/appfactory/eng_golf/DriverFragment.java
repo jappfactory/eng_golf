@@ -190,7 +190,7 @@ public class DriverFragment extends Fragment implements AbsListView.OnScrollList
 
     public void getItem(String target){
 
-        Log.e("target", ""+target);
+        //Log.e("target", ""+target);
       //  loading ++ ;
        // loadingresult = loading % 10;
        // if (loadingresult == 0 ) AdsFull.getInstance(getActivity()).setAdsFull();
