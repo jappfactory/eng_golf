@@ -76,7 +76,7 @@ public class MoviePlayActivity extends YouTubeBaseActivity implements YouTubePla
         loadingresult = viewcnt % 5;
          if (loadingresult == 0 ) AdsFull.getInstance(getApplicationContext()).setAdsFull();
 
-        //Toast.makeText (getApplicationContext(), "클릭" + viewcnt , Toast.LENGTH_LONG).show();
+        //Toast.makeText (getApplicationContext(), "클릭" + loadingresult , Toast.LENGTH_LONG).show();
         //AdsFull.getInstance(getApplicationContext()).setAdsFull();
 
 

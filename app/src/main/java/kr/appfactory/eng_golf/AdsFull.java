@@ -2,6 +2,7 @@ package kr.appfactory.eng_golf;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdListener;
@@ -35,6 +36,8 @@ public class AdsFull {
 
 
     public void  setAdsFull() {//
+
+        //Toast.makeText (context, "광고호출" , Toast.LENGTH_LONG).show();
 
         MobileAds.initialize(context, context.getResources().getString(R.string.ap_ad_id));
         mInterstitialAd = new InterstitialAd(context);
