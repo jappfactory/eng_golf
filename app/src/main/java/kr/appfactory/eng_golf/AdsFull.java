@@ -12,7 +12,7 @@ import com.google.android.gms.ads.MobileAds;
 public class AdsFull {
 
     private static InterstitialAd adFull;
-
+//
     private static final String TAG = MainActivity.class.getSimpleName();
     private static AdsFull instance = null;
     private static Context context;
