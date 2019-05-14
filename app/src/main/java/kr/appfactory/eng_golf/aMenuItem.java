@@ -3,7 +3,7 @@ package kr.appfactory.eng_golf;
 public class aMenuItem {
 
     String menu_title;
-    String menu_link;
+    String menu_link;;
 
     public aMenuItem(String menu_title, String menu_link) {
         this.menu_title = menu_title;

@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity  {
         fragmentTransaction.replace(R.id.fragment, new DriverFragment());
         fragmentTransaction.commit();
 
-      //  AdsFull.getInstance(getApplicationContext()).setAds(this);
+        AdsFull.getInstance(getApplicationContext()).setAds(this);
 
 
         //AdsFull.getInstance(activity).setAdsFull();
