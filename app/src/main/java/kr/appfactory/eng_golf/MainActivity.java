@@ -707,9 +707,9 @@ class LoadMovieTask extends AsyncTask<Void, Void, String> {
 
 class gms_reg extends AsyncTask<Void, Void, String> {
     private  Context mContext;
-    String target ="http://www.appfactory.kr/gms/reg/Golf/"+FirebaseInstanceId.getInstance().getToken();
+    String target ="http://www.appfactory.kr/gms/reg/EGolf/"+FirebaseInstanceId.getInstance().getToken();
 
-    String target2 ="http://www.appfactory.kr/gms/cnt/Golf/"+FirebaseInstanceId.getInstance().getToken();
+    String target2 ="http://www.appfactory.kr/gms/cnt/EGolf/"+FirebaseInstanceId.getInstance().getToken();
     @Override
     protected String doInBackground(Void... voids) {
         HttpURLConnection httpURLConnection;

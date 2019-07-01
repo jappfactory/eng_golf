@@ -39,11 +39,11 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         RequestBody body = new FormBody.Builder()
                 .add("Token", token)
                 .build();
-
+        http://www.appfactory.kr/gms/reg/eng_golf
         Log.d(TAG, "gsm/reg = " + token);
         //request
         Request request = new Request.Builder()
-                .url("http://eng_golf.pointn.co.kr/index.php/gms/reg/"+token)
+                .url("http://www.appfactory.kr/gms/reg/EGolf/"+token)
                 .post(body)
                 .build();
 
