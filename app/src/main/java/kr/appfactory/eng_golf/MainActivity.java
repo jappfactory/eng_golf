@@ -323,23 +323,23 @@ public class MainActivity extends AppCompatActivity  {
 
                 itemList2 = new ArrayList<MenuItema>();
 
-                itemList2.add(new MenuItema("Golf with Aimee - Beginner Series", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925R6pZfyupa1xQ94kWkJdSHn&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Golf with Aimee - Grip", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925S2qJ89qGNq0pCcN-xxPlVJ&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Golf with Aimee - Irons", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925SiF_8zM7WTNFPs6SGeremX&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Golf with Aimee - Short Game", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925SWyzWwKsW87ONk6IIfFf6U&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Golf with Aimee - Hybrid", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925SrxDTpI-FnnwwsHQ1KW3Ue&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Golf with Aimee - Fairway Wood", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925T2xnT-hN4JB12kFbCZYpCI&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Golf with Aimee - Driver Lessons", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925QFZ8DM7WDZtAAZXecU4oQO&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
+                itemList2.add(new MenuItema("Golf with Aimee - Beginner Series", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925R6pZfyupa1xQ94kWkJdSHn&maxResults=10"));
+                itemList2.add(new MenuItema("Golf with Aimee - Grip", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925S2qJ89qGNq0pCcN-xxPlVJ&maxResults=10"));
+                itemList2.add(new MenuItema("Golf with Aimee - Irons", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925SiF_8zM7WTNFPs6SGeremX&maxResults=10"));
+                itemList2.add(new MenuItema("Golf with Aimee - Short Game", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925SWyzWwKsW87ONk6IIfFf6U&maxResults=10"));
+                itemList2.add(new MenuItema("Golf with Aimee - Hybrid", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925SrxDTpI-FnnwwsHQ1KW3Ue&maxResults=10"));
+                itemList2.add(new MenuItema("Golf with Aimee - Fairway Wood", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925T2xnT-hN4JB12kFbCZYpCI&maxResults=10"));
+                itemList2.add(new MenuItema("Golf with Aimee - Driver Lessons", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL0uaI4r3925QFZ8DM7WDZtAAZXecU4oQO&maxResults=10"));
 
-                itemList2.add(new MenuItema("Scratch Golf Academy - Golf Drills", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i8RKNSHSNTNadqgrOy3hNAt&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Golf Swing", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i9F-RTbopA1IOp43PF-QyWe&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Golf Tips", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i_3Dz-PeUBLqGCwhcBaFWT5&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Driver Lessons", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i8xIdvTvAEVyAvYzBCZX5Fv&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Iron Shots", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i_ug31592-DeHuHHcxB3nkG&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Fairway Woods", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i9KxipqnhjDt7pLVUmnmd6q&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Chipping", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i8OeGfR9lIIdWTaT5gE_dJH&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Bunker Shots", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i_1mdwTVbZf69eDJRoMyeKA&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
-                itemList2.add(new MenuItema("Scratch Golf Academy - Putting Tips", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i-3uSnZYShUnckoIpDQ7pn4&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&pageToken="));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Golf Drills", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i8RKNSHSNTNadqgrOy3hNAt&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Golf Swing", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i9F-RTbopA1IOp43PF-QyWe&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Golf Tips", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i_3Dz-PeUBLqGCwhcBaFWT5&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Driver Lessons", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i8xIdvTvAEVyAvYzBCZX5Fv&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Iron Shots", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i_ug31592-DeHuHHcxB3nkG&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Fairway Woods", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i9KxipqnhjDt7pLVUmnmd6q&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Chipping", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i8OeGfR9lIIdWTaT5gE_dJH&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Bunker Shots", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i_1mdwTVbZf69eDJRoMyeKA&maxResults=10"));
+                itemList2.add(new MenuItema("Scratch Golf Academy - Putting Tips", "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLw_qo3FRP0i-3uSnZYShUnckoIpDQ7pn4&maxResults=10"));
 
 
                 //  menuItemAdapter = new MenuItemAdapter(context,  itemList, this);

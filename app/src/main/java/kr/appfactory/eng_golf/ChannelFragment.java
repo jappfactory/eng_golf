@@ -113,7 +113,8 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
 
         driverMovieListView.setOnScrollListener(this);
         // 다음 데이터를 불러온다.
-        getItem(mParam1);
+        String target = mParam1 + "&key="+getResources().getString(R.string.gcp_api_key);
+        getItem(target);
     }
 
     public void progressBarShow(){
@@ -156,9 +157,9 @@ public class ChannelFragment extends Fragment implements AbsListView.OnScrollLis
             // 로딩중을 알리는 프로그레스바를 보인다.
             progressBarShow();
       String nextPageToken= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
-            String target2 = mParam1 + nextPageToken;
 
             // 다음 데이터를 불러온다.
+            String target2 = mParam1 + "&key="+getResources().getString(R.string.gcp_api_key)+"&pageToken="+ nextPageToken;
             getItem(target2);
         }
     }

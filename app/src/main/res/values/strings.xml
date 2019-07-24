@@ -22,6 +22,7 @@
     <string name="banner_ad_unit_id">ca-app-pub-6495211093988107/8845197039</string>
     <string name="banner_ad_unit_id2">ca-app-pub-6495211093988107/3736736708</string><!-- //전면광고-->
     <string name="ap_ad_id">ca-app-pub-6495211093988107~7852855933</string>
+    <string name="gcp_api_key">AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

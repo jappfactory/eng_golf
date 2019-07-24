@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,7 +48,7 @@ public class PutterFragment extends Fragment implements AbsListView.OnScrollList
     Activity activity;
 
     String Keyword = ((MainActivity)getActivity()).getURLEncode("golf+putting+lesson");
-    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
 
     private OnFragmentInteractionListener mListener;
 
@@ -109,6 +110,10 @@ public class PutterFragment extends Fragment implements AbsListView.OnScrollList
 
         driverMovieListView.setOnScrollListener(this);
         // 다음 데이터를 불러온다.
+
+        target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword;
+        Log.e("target", ""+target);
+        // 다음 데이터를 불러온다.
         getItem(target);
     }
 
@@ -152,9 +157,9 @@ public class PutterFragment extends Fragment implements AbsListView.OnScrollList
             // 로딩중을 알리는 프로그레스바를 보인다.
             progressBarShow();
 
-            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=5&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
-            String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
-            target = target + aa;
+             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
+            target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken="+ aa;
+
             // 다음 데이터를 불러온다.
             getItem(target);
         }

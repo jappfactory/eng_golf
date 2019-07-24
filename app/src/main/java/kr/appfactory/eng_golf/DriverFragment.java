@@ -47,8 +47,8 @@ public class DriverFragment extends Fragment implements AbsListView.OnScrollList
 
     Activity activity;
     String Keyword = ((MainActivity)getActivity()).getURLEncode("golf+driver+lesson");
-    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
 
+    String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&safeSearch=strict&type=video";
 
     private OnFragmentInteractionListener mListener;
 
@@ -115,6 +115,7 @@ public class DriverFragment extends Fragment implements AbsListView.OnScrollList
         //Toast.makeText (activity, "" + target , Toast.LENGTH_LONG).show();
 
         // 다음 데이터를 불러온다.
+        target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword;
         getItem(target);
     }
     public void progressBarShow(){
@@ -167,9 +168,8 @@ public class DriverFragment extends Fragment implements AbsListView.OnScrollList
             videoCount – 업로드한 동영상 수에 따라 채널을 내림차순으로 정렬합니다.
             viewCount – 리소스를 조회수가 높은 항목부터 정렬합니다.
 */
-            String target = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&videoSyndicated=true&maxResults=10&key=AIzaSyBn4fOG4zKOYVbYtcMtGj8gGsVVpTYb68g&safeSearch=strict&type=video&q="+Keyword+"&pageToken=";
             String aa= SharedPreference.getSharedPreference(getActivity(), "nextPageToken");
-            target = target + aa;
+            target = target + "&key="+getResources().getString(R.string.gcp_api_key)+ "&q="+Keyword +"&pageToken="+ aa;
            // Log.e("target", ""+target);
 
             //Toast.makeText (getActivity(), "" + target , Toast.LENGTH_LONG).show();
